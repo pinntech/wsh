@@ -1,7 +1,7 @@
 .. |pypi| image:: https://img.shields.io/pypi/v/wssh.svg?style=flat-square
-    :target: https://pypi.python.org/pypi/oas3
+    :target: https://pypi.python.org/pypi/wssh
 .. |license| image:: https://img.shields.io/pypi/l/wssh.svg?style=flat-square
-    :target: https://pypi.python.org/pypi/oas3
+    :target: https://pypi.python.org/pypi/wssh
 
 ****
 WSSH
@@ -16,7 +16,10 @@ Quickstart
 ==========
 
 Install via PyPi:
-`pip install wssh`
+
+.. code-block:: shell
+
+    pip install wssh
 
 
 Then simply call the command line tool with your WebSocket server host, you should
