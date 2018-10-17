@@ -34,7 +34,7 @@ class SolarizedStyle(Style):
         # Keyword.Namespace
         # Keyword.Pseudo
         Keyword.Reserved: BLUE,
-        Keyword.Type: RED,
+        Keyword.Type: BLUE,
 
         # Name
         Name.Attribute: BASE1,
@@ -57,7 +57,7 @@ class SolarizedStyle(Style):
 
         # Literal
         # Literal.Date
-        String: CYAN,
+        String: GREEN,
         String.Backtick: BASE01,
         String.Char: CYAN,
         String.Doc: BASE1,
@@ -66,20 +66,20 @@ class SolarizedStyle(Style):
         String.Heredoc: BASE1,
         # String.Interpol
         # String.Other
-        String.Regex: RED,
+        String.Regex: ORANGE,
         # String.Single
-        # String.Symbol
+        String.Symbol: BASE03,
         Number: CYAN,
-        # Number.Float
+        Number.Float: MAGENTA,
         # Number.Hex
-        # Number.Integer
+        Number.Integer: YELLOW,
         # Number.Integer.Long
         # Number.Oct
 
         Operator: GREEN,
         # Operator.Word
 
-        # Punctuation: ORANGE,
+        # Punctuation: BASE03,
 
         Comment: BASE01,
         # Comment.Multiline

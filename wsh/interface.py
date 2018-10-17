@@ -28,7 +28,7 @@ from .command_processor import CommandProcessor, Command
 # ---------
 def init_text():
     """Returns the introductory text applied to output when the app is launched."""
-    return (u"[wsh {}] (Python {})\n".format(__version__, python_version()) +
+    return (u'[wsh "{}"] (Python "{}")\n'.format(__version__, python_version()) +
             u'\nType "help" for more info, or "exit" to quit.\n' +
             u'-' * click.get_terminal_size()[0])
 

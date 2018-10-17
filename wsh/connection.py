@@ -74,7 +74,7 @@ class Connection:
         self.info(str(error))
 
     def on_close(self, ws):
-        self.info('Connection closed with ({})'.format(self.ws_url))
+        self.info('Connection closed with ("{}")'.format(self.ws_url))
 
     def on_open(self, ws):
-        self.info('Connection opened with ({})'.format(self.ws_url))
+        self.info('Connection opened with ("{}")'.format(self.ws_url))
