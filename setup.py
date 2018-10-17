@@ -16,7 +16,7 @@ REQUIREMENTS = filter(None, open(
 import versioneer
 
 setup(
-    name='wssh',
+    name='wsh',
     author=__author__,
     author_email=__email__,
     license="MIT",

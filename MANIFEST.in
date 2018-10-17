@@ -4,4 +4,4 @@ include HISTORY.rst
 include CLASSIFIERS
 include versioneer.py
 recursive-include requirements *.txt
-include wssh/_version.py
+include wsh/_version.py
