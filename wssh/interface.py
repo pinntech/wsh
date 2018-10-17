@@ -1,10 +1,12 @@
-#!/usr/bin/env python
+# flake8: noqa
 """
 :copyright: (c) 2018 Pinn Technologies, Inc.
 :license: All rights reserved
 """
 
-__version__ = '0.1.0'
+from ._version import get_versions
+__version__ = get_versions()['version']
+del get_versions
 
 import click
 from platform import python_version
@@ -30,6 +32,7 @@ def init_text():
             u'\nType "help" for more info, or "exit" to quit.\n' +
             u'-' * click.get_terminal_size()[0])
 
+
 # Command Processor
 command_processor = CommandProcessor()
 
@@ -44,6 +47,7 @@ output_field = TextArea(text=init_text(),
 def accept_handler(buf):
     """Callback method invoked when <ENTER> is pressed."""
     command_processor.accept_handler(buf, input_field, output_field)
+
 
 command_completer = WordCompleter([command.value for command in Command],
                                   ignore_case=True)

@@ -1,24 +1,20 @@
-#!/usr/bin/env python
 """
 :copyright: (c) 2018 Pinn Technologies, Inc.
 :license: All rights reserved
 """
 
-__version__ = '0.1.0'
-
 import json
 import click
 import websocket
 from blinker import signal
-from prompt_toolkit.layout import Layout
 from prompt_toolkit.document import Document
 
 
 class Connection:
 
     def __init__(self, ws_url, app, debug=True):
-        # websocket.enableTrace(debug)
         signal('wssh-send').connect(self.send)
+        signal('wssh-close').connect(self.close)
         self.ws_url = ws_url
         self.app = app
         self.output = app.layout.container.children[0].content.buffer
@@ -55,18 +51,22 @@ class Connection:
             json_data = json.loads(data)
             self.display('sent', direction='out')
             self.display(json.dumps(json_data, indent=2))
-        except Exception as e:
+        except Exception:
             self.display('sent', direction='out')
             self.display(data)
+
+    def close(self, sender, **kw):
+        """Close connection to the server."""
+        self.ws.close()
 
     def on_message(self, ws, message):
         try:
             data = json.loads(message)
             self.display('received', direction='in')
             self.display(json.dumps(data, indent=2))
-        except Exception as e:
+        except Exception:
             self.display('received', direction='in')
-            self.display(message.decode('utf-8'), direction='in')
+            self.display(message.decode('utf-8'))
 
     def on_error(self, ws, error):
         message = "Error occured during connection to ({})".format(self.ws_url)

@@ -4,8 +4,6 @@
 :license: All rights reserved
 """
 
-__version__ = '0.1.0'
-
 import click
 import _thread as thread
 from .connection import Connection

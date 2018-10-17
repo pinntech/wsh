@@ -17,7 +17,6 @@ class Command(Enum):
     EXIT = 'exit'
     NONE = ''
     SEND = 'send'
-    OPEN = 'open'
     CLOSE = 'close'
     HELP = 'help'
 
@@ -25,7 +24,6 @@ class Command(Enum):
 class CommandProcessor:
 
     def __init__(self):
-        self.wssh_send = signal('wssh-send')
         self.commands = dict()
 
     def process_command(self, command, argument, input_field, output_field):
@@ -36,15 +34,19 @@ class CommandProcessor:
         elif command == Command.SEND:
             wssh_send = signal('wssh-send')
             wssh_send.send(self, data=argument)
+        elif command == Command.CLOSE:
+            wssh_close = signal('wssh-close')
+            wssh_close.send(self)
+        elif command == Command.HELP:
+            self.show_help(output_field)
 
     def accept_handler(self, buf, input_field, output_field):
         """Callback method invoked when <ENTER> is pressed."""
         try:
             tokens = input_field.text.split(' ')
             command = Command(tokens[0])
-            cmd, sep, args = input_field.text.partition(' ')
-            argument = tokens[1] if len(tokens) > 1 else None
-            self.process_command(command, args, input_field, output_field)
+            cmd, sep, argument = input_field.text.partition(' ')
+            self.process_command(command, argument, input_field, output_field)
         except ValueError:
             output = u'Command not found, type "help" to see available commands.'
             output = output_field.text + '\n' + output
@@ -55,3 +57,15 @@ class CommandProcessor:
     def register_command(self, name, command):
         """Register a new command as a callable function name in the shell."""
         self.commands[name] = command
+
+    def show_help(self, output_field):
+        """Shows a help message that lists available commands."""
+        output = """
+        `exit`           - Exit the shell.
+        `send <data>`    - Sends the given data to the server.
+        `close`          - Close the connection to the server but dont exit.
+        `help`           - Shows this help message.
+        """
+        output = output_field.text + '\n' + output
+        output_field.buffer.document = Document(text=output,
+                                                cursor_position=len(output))

@@ -1,10 +1,7 @@
-#!/usr/bin/env python
 """
 :copyright: (c) 2018 Pinn Technologies, Inc.
 :license: All rights reserved
 """
-
-__version__ = '0.1.0'
 
 from prompt_toolkit.application import Application
 from prompt_toolkit.layout import Layout

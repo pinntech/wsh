@@ -1,42 +1,45 @@
-.. |travis-ci| image:: https://img.shields.io/travis/pinntech/oas3/master.svg?style=flat-square
-    :target: https://travis-ci.org/#!/pinntech/oas3?branch=master
-.. |coveralls| image:: https://img.shields.io/coveralls/pinntech/oas3/master.svg?style=flat-square
-    :target: https://coveralls.io/r/pinntech/oas3?branch=master
-.. |pypi| image:: https://img.shields.io/pypi/v/oas3.svg?style=flat-square
+.. |pypi| image:: https://img.shields.io/pypi/v/wssh.svg?style=flat-square
     :target: https://pypi.python.org/pypi/oas3
-.. |license| image:: https://img.shields.io/pypi/l/oas3.svg?style=flat-square
+.. |license| image:: https://img.shields.io/pypi/l/wssh.svg?style=flat-square
     :target: https://pypi.python.org/pypi/oas3
 
 ****
-OAS3
+WSSH
 ****
-|travis-ci| |coveralls| |pypi| |license| 
+|pypi| |license| 
 
-OAS3 is a parser, validator and compiler for dealing with Open API
-Specification v3. This library provides an interface for working with
-specifications, and loading and dumping to various locations and formats.
+WSSH is a command line interface that launches a shell to send and recieve
+messages from a WebSocket server. It was designed to be simplistic and allow
+developers to easily connect/send/receive data over a WS with very little effort.
 
 Quickstart
-===========
+==========
 
-To get started load your spec, it will be validated upon dumping.
+Install via PyPi:
+`pip install wssh`
+
+
+Then simply call the command line tool with your WebSocket server host, you should
+also specify the WebSocket protocol ("ws" or "wss")
+
+.. code-block:: shell
+
+    wssh ws://127.0.0.1:7001/ws/connection
+
+
+For more complex scenarios you can launch the shell manually via a simple python script.
 
 .. code-block:: python
 
-   from oas3 import Spec
+     from wssh import WSSH
 
-   # Load the Spec from a file
-   spec = Spec.from_file('./spec.json')
-   spec = Spec.from_file('./spec.yml')
 
-   # Load the Spec from a URL
-   spec = Spec.from_url('https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v3.0/petstore.yaml')
+     def main():
+         # Custom Logic
+         # ............
+         wssh = WSSH(host='ws://127.0.0.1:7001/ws/connection')
+         wssh.run()
 
-   # Load the Spec from a python native dictionary
-   spec = Spec.from_dict(spec_dict)
 
-   # A spec that is sufficiently loaded (i.e. valid OAS3) can now be dumped
-   spec.to_file('/tmp/spec.yaml')
-   spec.to_dict()
-   spec.to_json()
-   spec.to_yaml()
+     if __name__ == '__main__':
+         main()
