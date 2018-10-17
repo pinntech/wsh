@@ -10,7 +10,7 @@ from .connection import Connection
 from .app import app, command_processor
 
 
-class WSSH:
+class WSH:
 
     def __init__(self, host, commands=None):
         self.host = host
@@ -27,9 +27,9 @@ class WSSH:
 
 @click.command()
 @click.argument('host')
-def wssh(host):
-    WSSH(host).run()
+def wsh(host):
+    WSH(host).run()
 
 
 if __name__ == '__main__':
-    wssh()
+    wsh()

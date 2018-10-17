@@ -32,11 +32,11 @@ class CommandProcessor:
         elif command == Command.EXIT:
             get_app().exit()
         elif command == Command.SEND:
-            wssh_send = signal('wssh-send')
-            wssh_send.send(self, data=argument)
+            wsh_send = signal('wsh-send')
+            wsh_send.send(self, data=argument)
         elif command == Command.CLOSE:
-            wssh_close = signal('wssh-close')
-            wssh_close.send(self)
+            wsh_close = signal('wsh-close')
+            wsh_close.send(self)
         elif command == Command.HELP:
             self.show_help(output_field)
 

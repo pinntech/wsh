@@ -13,8 +13,8 @@ from prompt_toolkit.document import Document
 class Connection:
 
     def __init__(self, ws_url, app, debug=True):
-        signal('wssh-send').connect(self.send)
-        signal('wssh-close').connect(self.close)
+        signal('wsh-send').connect(self.send)
+        signal('wsh-close').connect(self.close)
         self.ws_url = ws_url
         self.app = app
         self.output = app.layout.container.children[0].content.buffer

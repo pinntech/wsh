@@ -4,15 +4,13 @@
 :license: All rights reserved
 """
 
-__version__ = '0.1.0'
-
 import click
 import _thread as thread
-from wssh.connection import Connection
-from wssh.app import app, command_processor
+from wsh.connection import Connection
+from wsh.app import app, command_processor
 
 
-class WSSH:
+class WSH:
 
     def __init__(self, host, commands=None):
         self.host = host
@@ -29,9 +27,9 @@ class WSSH:
 
 @click.command()
 @click.argument('host')
-def wssh(host):
-    WSSH(host).run()
+def wsh(host):
+    WSH(host).run()
 
 
 if __name__ == '__main__':
-    wssh()
+    wsh()
