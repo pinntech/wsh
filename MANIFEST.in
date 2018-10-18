@@ -3,5 +3,5 @@ include LICENSE.txt
 include HISTORY.rst 
 include CLASSIFIERS
 include versioneer.py
-recursive-include requirements *.txt
+include requirements.txt
 include wsh/_version.py
