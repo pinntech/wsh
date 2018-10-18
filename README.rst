@@ -13,7 +13,7 @@ messages from a WebSocket server. It was designed to be simplistic and allow
 developers to easily connect/send/receive data over a WS with very little effort.
 
 
-.. image:: https://gfycat.com/SlimUncomfortableCanary
+.. image:: https://thumbs.gfycat.com/SlimUncomfortableCanary-size_restricted.gif
    :align: center
 
 
