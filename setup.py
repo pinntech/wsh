@@ -22,7 +22,9 @@ setup(
     license="MIT",
     url="https://wsh.readthedocs.org",
     zip_safe=False,
-    scripts=['bin/wsh'],
+    entry_points = {
+        'console_scripts': ['wsh=wsh.wsh:wsh'],
+    },
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
     install_requires=list(REQUIREMENTS),

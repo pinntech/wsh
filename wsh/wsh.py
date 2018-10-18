@@ -12,15 +12,16 @@ from .app import app, command_processor
 
 class WSH:
 
-    def __init__(self, host, commands=None):
+    def __init__(self, host, senders=None, receiver=None):
         self.host = host
-        if commands:
-            for key, value in commands.items():
-                command_processor.register_command(key, value)
+        if senders:
+            for key, value in senders.items():
+                command_processor.register_sender(key, value)
+        self.receiver = receiver
 
     def run(self):
         def connection():
-            Connection(self.host, app)
+            Connection(self.host, app, self.receiver)
         thread.start_new_thread(connection, ())
         app.run()
 

@@ -12,11 +12,12 @@ from prompt_toolkit.document import Document
 
 class Connection:
 
-    def __init__(self, ws_url, app, debug=True):
+    def __init__(self, ws_url, app, receiver=None):
         signal('wsh-send').connect(self.send)
         signal('wsh-close').connect(self.close)
         self.ws_url = ws_url
         self.app = app
+        self.receiver = receiver
         self.output = app.layout.container.children[0].content.buffer
         self.ws = websocket.WebSocketApp(ws_url,
                                          on_message=self.on_message,
@@ -67,6 +68,9 @@ class Connection:
         except Exception:
             self.display('received', direction='in')
             self.display(message.decode('utf-8'))
+        finally:
+            if self.receiver:
+                self.receiver(message, self)
 
     def on_error(self, ws, error):
         message = "Error occured during connection to ({})".format(self.ws_url)
