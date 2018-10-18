@@ -6,7 +6,6 @@ import os
 
 sys.path.insert(0, os.path.abspath('../../'))
 sys.path.append(os.path.abspath('_themes'))
-from wsh._version import get_versions
 
 extensions = [
     'sphinx.ext.autodoc',
@@ -21,12 +20,12 @@ master_doc = 'index'
 project = u'wsh'
 copyright = u'2018, Pinn Technologies, Inc'
 
-version = release = get_versions()['version']
+#version = release = get_versions()['version']
 exclude_patterns = []
 pygments_style = 'sphinx'
-html_theme_options = {
+#html_theme_options = {
 #    "index_logo": "capture.png"
-}
+#}
 html_theme_path = ["_themes"]
 html_theme = 'flask'
 html_static_path = ['_static']
