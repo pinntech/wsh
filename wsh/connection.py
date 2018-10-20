@@ -73,7 +73,7 @@ class Connection:
                 self.receiver(message, self)
 
     def on_error(self, ws, error):
-        message = "Error occured during connection to ({})".format(self.ws_url)
+        message = 'Error occured during connection to ("{}")'.format(self.ws_url)
         self.info(message)
         self.info(str(error))
 
