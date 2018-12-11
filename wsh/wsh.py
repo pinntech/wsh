@@ -12,18 +12,20 @@ from .app import app, command_processor
 
 class WSH:
 
-    def __init__(self, host, senders=None, receiver=None):
+    def __init__(self, host, senders=None, receiver=None, quiet=False):
         self.host = host
         if senders:
             for key, value in senders.items():
                 command_processor.register_sender(key, value)
         self.receiver = receiver
+        self.quiet = quiet
 
     def run(self):
         def connection():
             Connection(self.host, app, self.receiver)
         thread.start_new_thread(connection, ())
-        app.run()
+        if not self.quiet:
+            app.run()
 
 
 @click.command()
